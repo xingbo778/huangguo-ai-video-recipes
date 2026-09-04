@@ -5,8 +5,8 @@
   "provenance": {
     "sourceScript": "huangguo/scripts/gen_hero_wan3.py",
     "recordedAt": "2026-09-04",
-    "claim": "The request payload is reproduced from the generation script. The public input and web derivative are verified by SHA-256; the original generated file is recorded separately by hash.",
-    "originalOutputSha256": "467a23963d980057622304a28368ad7a3fe5859c10c4954f671e061d4612fd90"
+    "claim": "The request payload is reproduced from the generation script. The public input and web derivative are verified by SHA-256; the site's transcoded master is recorded separately by hash. The provider's raw response was deleted after transcoding and is not claimed as preserved.",
+    "transcodedMasterSha256": "467a23963d980057622304a28368ad7a3fe5859c10c4954f671e061d4612fd90"
   },
   "request": {
     "provider": "Atlas Cloud",
@@ -44,7 +44,7 @@
     }
   },
   "postProcessing": [
-    "The model output was first stored as a 1920x1080 H.264 file; its SHA-256 is recorded in provenance.",
+    "The provider response was transcoded into a 1920x1080 H.264 site master; that master's SHA-256 is recorded in provenance. The provider raw file was then deleted.",
     "The public derivative was encoded at 720x406, 15 fps, H.264 CRF 31, yuv420p, without audio, and with fast-start metadata."
   ],
   "limitations": [
