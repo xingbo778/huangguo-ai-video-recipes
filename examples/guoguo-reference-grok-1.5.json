@@ -1,0 +1,54 @@
+{
+  "$schema": "../schema/recipe.schema.json",
+  "id": "guoguo-reference-grok-1.5",
+  "title": "Fictional adult character reference-to-video test",
+  "provenance": {
+    "sourceScript": "huangguo.design/scripts/generate-seo-evidence.mjs",
+    "recordedAt": "2026-09-04",
+    "requestId": "964f3356-6c6e-9e2a-b8b7-3b89f745454d",
+    "claim": "The payload and xAI request ID are recorded by the generation script. The public input and directly downloaded provider output are verified by SHA-256."
+  },
+  "request": {
+    "provider": "xAI",
+    "model": "grok-imagine-video-1.5",
+    "prompt": "Use <IMAGE_0> as the only identity reference. The same clearly adult fictional woman, age 28, stands in an elegant amber hotel lounge. Preserve her face, hairstyle, gold dress, and body proportions. She slowly turns toward the camera, blinks once, and rests one hand on the chair. Locked camera, one continuous shot, subtle breathing and fabric motion, no speech, no text, no new people, no nudity.",
+    "parameters": {
+      "durationSeconds": 4,
+      "aspectRatio": "3:4",
+      "resolution": "480p",
+      "referenceImageCount": 1
+    }
+  },
+  "input": {
+    "url": "https://huangguo.chat/characters-v2/guoguo.jpg",
+    "mediaType": "image/jpeg",
+    "bytes": 115242,
+    "sha256": "f13130a7b5ec6b2837611c47cd3608c0a823bd263819ca37e48842c469318299",
+    "measured": {
+      "width": 864,
+      "height": 1152
+    }
+  },
+  "output": {
+    "url": "https://huangguo.design/evidence/generated/grok-consistent-character.mp4",
+    "mediaType": "video/mp4",
+    "bytes": 720497,
+    "sha256": "9174cb4555eee9b308dfb38b5d59ea7b6a611296b6e42a744de27c87187fcf7e",
+    "measured": {
+      "codec": "h264",
+      "width": 480,
+      "height": 640,
+      "durationSeconds": 4.041667,
+      "framesPerSecond": 24,
+      "frames": 97
+    }
+  },
+  "postProcessing": [
+    "The completed provider MP4 was downloaded byte-for-byte; no visual, timing, or audio post-processing was applied."
+  ],
+  "limitations": [
+    "Reference-to-video does not use the reference as a locked first frame; the generated pose, framing, and room differ from the input portrait.",
+    "The gold dress, bow, hairstyle, and overall character direction remain recognizable, but facial proportions visibly change, so this is not identity verification.",
+    "One four-second clip cannot establish consistency across multiple independently generated shots."
+  ]
+}

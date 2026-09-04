@@ -11,6 +11,7 @@ These are production records, not benchmark claims. A successful request does no
 | [Adult character idle loop](examples/guoguo-idle-loop.json) | [864×1152 reference](https://huangguo.chat/characters-v2/guoguo.jpg) | [10.33 s MP4](https://huangguo.chat/motion/guoguo-idle-h3v3.mp4) | Identity continuity and reversible loop post-processing |
 | [Hair-touch reaction](examples/guoguo-hair-reaction.json) | [864×1152 reference](https://huangguo.chat/characters-v2/guoguo.jpg) | [5.17 s MP4](https://huangguo.chat/motion/guoguo-zone-hair-h3v1.mp4) | Hand/face occlusion and a single controlled gesture |
 | [Neon-city two-character shot](examples/dushi-neon-couple-wan3.json) | [3840×2160 first frame](https://huangguodrama.ai/landing/hero-4.jpg) | [6.00 s web derivative](https://huangguodrama.ai/evidence/hero-4-preview.mp4) | Two-character proximity, background motion, and derivative provenance |
+| [Grok reference-to-video test](examples/guoguo-reference-grok-1.5.json) | [864×1152 reference](https://huangguo.chat/characters-v2/guoguo.jpg) | [4.04 s MP4](https://huangguo.design/evidence/generated/grok-consistent-character.mp4) | Reference adherence and visible identity drift |
 
 Both H3 requests asked for `9:16`, while their measured files are `480×640` (`3:4`). That mismatch is preserved here because it is useful evidence: downstream code should probe output dimensions and crop or pad when a strict delivery ratio is required. The Wan 3.0 record is a separate `16:9`-style workflow whose public MP4 is explicitly labeled as a lossy derivative.
 
