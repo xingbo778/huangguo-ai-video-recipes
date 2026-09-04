@@ -1,0 +1,39 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "luma-ray3.2",
+  "name": "Luma Ray3.2 (Dream Machine API)",
+  "provider": "Luma Labs",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video", "first-frame", "last-frame", "video-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "First-party API at api.lumalabs.ai. Pay-per-video with no subscription or minimum.",
+    "documentationUrl": "https://docs.lumalabs.ai/"
+  },
+  "pricing": {
+    "unit": "per second or per 5 s clip",
+    "publicRate": "720p $0.06/s ($0.30 per 5 s clip); 1080p $0.24/s ($1.20 per 5 s clip). HDR is 2x, HDR+EXR is 3x.",
+    "sourceUrl": "https://lumalabs.ai/api/pricing",
+    "note": "Read 2026-09-05 via third-party comparison tables. The 720p to 1080p jump is roughly 4x, not linear."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": 10,
+    "resolutions": ["720p", "1080p"],
+    "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+    "nativeAudio": false
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://docs.lumalabs.ai/",
+      "https://pixlrun.com/sora-api-shutdown/ - comparison table read 2026-09-05"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "No local run exists in this repository.",
+    "Supports keyframe-guided generation and looping, which maps onto the same storyboard use case covered by the Grok failure records here.",
+    "No native audio, so dialogue workflows need a separate audio stage."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "pika-via-fal",
+  "name": "Pika 2.2 (via Fal.ai)",
+  "provider": "Pika / Fal.ai",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "No direct Pika-hosted endpoint for this route; integration is against Fal.ai infrastructure.",
+    "documentationUrl": "https://fal.ai/models"
+  },
+  "pricing": {
+    "unit": "per clip",
+    "publicRate": "$0.20 per 5-second 720p clip.",
+    "sourceUrl": "https://fal.ai/models",
+    "note": "Read 2026-09-05 from third-party comparison. Useful mainly when Fal.ai is already a dependency."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": null,
+    "resolutions": ["720p"],
+    "aspectRatios": [],
+    "nativeAudio": null
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://fal.ai/models",
+      "https://theaimap.app/sora-api-alternatives"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "No local run exists in this repository.",
+    "Listed because it appears in Sora migration roundups, not because we can vouch for it."
+  ]
+}

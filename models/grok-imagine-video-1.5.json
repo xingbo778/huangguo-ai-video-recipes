@@ -1,0 +1,34 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "grok-imagine-video-1.5",
+  "name": "Grok Imagine Video 1.5",
+  "provider": "xAI",
+  "status": "verified",
+  "modality": ["text-to-video", "reference-to-video", "video-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "Served by xAI's public API; availability is subject to xAI's own regional terms. Not independently verified against every jurisdiction.",
+    "documentationUrl": "https://docs.x.ai/docs/models"
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": null,
+    "resolutions": ["480p"],
+    "aspectRatios": ["3:4", "16:9"],
+    "nativeAudio": null
+  },
+  "evidence": {
+    "localRuns": [
+      { "recipeId": "guoguo-reference-grok-1.5", "url": "https://huangguo.design/evidence/generated/grok-consistent-character.mp4" }
+    ],
+    "publicRecords": [
+      "https://docs.x.ai/docs/models - model list and capabilities as published by xAI"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "This is the only model in this database with a byte-for-byte verified local run: request ID 964f3356-6c6e-9e2a-b8b7-3b89f745454d, output SHA-256 9174cb4555eee9b308dfb38b5d59ea7b6a611296b6e42a744de27c87187fcf7e.",
+    "Reference-to-video did not lock the reference image as the first frame. The generated pose, framing, and room differed from the input portrait.",
+    "Two additional Grok runs (video edit and two storyboard shots) exist as huangguo.design evidence but are not yet formatted as standalone recipes in this repository."
+  ]
+}

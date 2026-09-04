@@ -1,0 +1,23 @@
+{
+  "$schema": "../schema/failure.schema.json",
+  "id": "hand-crossing-face-artifacts",
+  "title": "A hand crossing the face is a worst case for anatomy artifacts",
+  "mode": "image-to-video",
+  "relatedModelIds": ["minimax-h3-max"],
+  "relatedRecipeIds": ["guoguo-hair-reaction-h3v1"],
+  "firstObservedAt": "2026-09-04",
+  "status": "confirmed",
+  "symptom": "A prompt asking the character to push a strand of hair behind the ear, with fingertips grazing the jaw, produced the intended gesture but this remains the highest-risk configuration in the set for finger, hair, jawline, and identity artifacts.",
+  "reproduction": "Submit an image-to-video request where a hand travels across the face or jaw, then step through every frame.",
+  "measuredDifference": {
+    "requested": "single controlled gesture, stable hands, no morphing",
+    "measured": "gesture completed, but this input class is recorded as requiring per-frame review rather than passing"
+  },
+  "detection": "Step through the clip frame by frame at the point of contact. Aggregate quality metrics will not surface this.",
+  "mitigation": "Prefer gestures that do not occlude the face. When occlusion is required, budget for per-frame review and reshoots.",
+  "severity": "medium",
+  "whyItMatters": "Hand-to-face is one of the most requested motions in character work and one of the least reliable. Recording it as a stress test keeps the expectation honest.",
+  "notes": [
+    "Recorded as a known-limitation stress test rather than a failure of the specific run, because the run did complete the requested gesture."
+  ]
+}

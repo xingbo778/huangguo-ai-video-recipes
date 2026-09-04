@@ -1,42 +1,108 @@
-# Reproducible AI video prompt recipes
+# Measured AI video model database
 
-Small, inspectable image-to-video experiments from the Huangguo product family. Every recipe records the exact public input, submitted prompt and parameters, public output, file hashes, measured output properties, post-processing, and known limitations.
+A public, reproducible record of what AI video models actually returned when we asked them for something — with the request, the output file, its SHA-256, and the mismatch, kept together.
 
-These are production records, not benchmark claims. A successful request does not guarantee the requested aspect ratio, identity stability, hand quality, or a clean loop. Validate the downloaded output instead of trusting request parameters alone.
+This is **not** a "best AI video generator" listicle. Every number here is either re-downloaded and hash-verified by us, or explicitly labeled as someone else's published figure. There are no quality scores, no rankings, and no winner.
 
-## Verified recipes
+## Why this exists
 
-| Recipe | Input | Output | What it tests |
-| --- | --- | --- | --- |
-| [Adult character idle loop](examples/guoguo-idle-loop.json) | [864×1152 reference](https://huangguo.chat/characters-v2/guoguo.jpg) | [10.33 s MP4](https://huangguo.chat/motion/guoguo-idle-h3v3.mp4) | Identity continuity and reversible loop post-processing |
-| [Hair-touch reaction](examples/guoguo-hair-reaction.json) | [864×1152 reference](https://huangguo.chat/characters-v2/guoguo.jpg) | [5.17 s MP4](https://huangguo.chat/motion/guoguo-zone-hair-h3v1.mp4) | Hand/face occlusion and a single controlled gesture |
-| [Neon-city two-character shot](examples/dushi-neon-couple-wan3.json) | [3840×2160 first frame](https://huangguodrama.ai/landing/hero-4.jpg) | [6.00 s web derivative](https://huangguodrama.ai/evidence/hero-4-preview.mp4) | Two-character proximity, background motion, and derivative provenance |
-| [Grok reference-to-video test](examples/guoguo-reference-grok-1.5.json) | [864×1152 reference](https://huangguo.chat/characters-v2/guoguo.jpg) | [4.04 s MP4](https://huangguo.design/evidence/generated/grok-consistent-character.mp4) | Reference adherence and visible identity drift |
+Most AI video comparison pages are written from vendor marketing and hand-picked reels. When you copy their settings, you get different results and no idea why.
 
-Both H3 requests asked for `9:16`, while their measured files are `480×640` (`3:4`). That mismatch is preserved here because it is useful evidence: downstream code should probe output dimensions and crop or pad when a strict delivery ratio is required. The Wan 3.0 record is a separate `16:9`-style workflow whose public MP4 is explicitly labeled as a lossy derivative.
+Three concrete examples from our own runs:
 
-## Verify the public artifacts
+- We asked for **9:16** twice and got **480×640 (3:4)** back with an HTTP 200 and no error. Both times.
+- We asked for **480P** and the measured long edge was **640**.
+- We asked for **5 s** and measured **10.33 s**, because our own palindrome post-processing doubled it.
 
-Requires Node.js 20 or newer:
+None of these are bugs in a vendor. They are the normal gap between a request parameter and a delivered file, and you cannot see them unless you probe the output.
+
+## What's in here
+
+| Directory | What it holds |
+|---|---|
+| `examples/` | 4 recipes. Full request payload, public input and output URLs, byte counts, SHA-256, measured properties, post-processing steps, known limitations. |
+| `models/` | 9 model records. 3 with verified local runs, 6 explicitly marked `not-run`. |
+| `failures/` | 6 reproducible failure modes with requested/measured, detection, and mitigation. |
+| `docs/` | Auto-generated matrix, parameter comparison, and failure catalogue. Regenerate with `npm run build`. |
+| `schema/` | JSON Schemas for all three record types. |
+
+## Verified vs not-run
+
+This is the most important distinction in the repository.
+
+**Verified local run** (3 of 9): we hold at least one recipe whose public input and output we re-downloaded and matched by SHA-256. Measured columns in `docs/MODEL_MATRIX.md` come only from these.
+
+**No local run** (6 of 9: Sora 2, Veo 3.1, Kling 3.0, Seedance 2.0, Runway Gen-4.5, Wan open weights): we have **not** run these. Their spec and price columns are vendor-published figures we copied from public documentation with the source URL and the date we read it. They carry **no quality or speed score of any kind**, because we have none to report.
+
+We would rather publish an empty slot than fill it with a guess. If you have run one of these, a PR with a hash beats an opinion.
+
+## The parameter matrix
+
+The clearest output in the repo — what we asked for versus what came back:
+
+| Recipe | Model | Requested | Measured | Mismatch |
+|---|---|---|---|---|
+| Neon-city two-character shot | `alibaba/wan-3.0/image-to-video` | 720p, 6 s | 720×406, 6.00 s, 15 fps | none observed |
+| Hair-touch reaction | `minimax/h3-max/image-to-video` | 9:16, 480P, 5 s | 480×640, 5.17 s, 24 fps | ratio, long edge |
+| Idle loop | `minimax/h3-max/image-to-video` | 9:16, 480P, 5 s | 480×640, 10.33 s, 24 fps | ratio, long edge, duration |
+| Reference-to-video | `grok-imagine-video-1.5` | 3:4, 480p, 4 s | 480×640, 4.04 s, 24 fps | long edge |
+
+Regenerate it with `npm run build`.
+
+## Failure catalogue
+
+Six modes, each stating what was requested, what was measured, how to detect it, and what to do instead:
+
+1. **Requested 9:16 returned 3:4 with HTTP 200** (high) — reproduced twice, same parameters.
+2. **Reference-to-video does not lock the reference as frame one** (high) — reference-to-video is a soft identity hint, not identity verification.
+3. **Independent shots cannot verify as one face** (medium) — prompt reuse across shots does not produce a continuous character.
+4. **Public artifact is a lossy derivative, not the provider response** (medium) — we publish the master's hash so the gap is auditable.
+5. **Palindrome loop doubles duration** (low) — works for breathing, breaks on gestures.
+6. **Hand crossing the face is an artifact worst case** (medium).
+
+## Verify everything yourself
 
 ```bash
-npm run verify
+npm run verify          # re-download every recipe artifact, compare bytes and SHA-256
+npm run verify:db       # cross-reference integrity, evidence rules, no-ranking-language check
+npm run build           # regenerate docs/ from the JSON records
 ```
 
-The script downloads every declared input and output, then checks byte length and SHA-256. The JSON records conform to [the recipe schema](schema/recipe.schema.json).
+`verify:db` fails the build if a model claims `verified` without a hashed recipe, if a failure record omits detection or mitigation, or if any record contains ranking language like "best" or "outperforms". Try it: flip `models/kling-3.0.json` to `status: "verified"` and watch it fail.
 
-## Related live pages
+## Contributing
 
-- [Huangguo Chat role-play hub](https://huangguo.chat/play)
+The useful contribution is a run we don't have.
+
+1. Copy an existing record in `examples/` and fill in your real request and output.
+2. Host the input and output at public, stable URLs.
+3. Fill `bytes` and `sha256` from the file you actually downloaded, not from your request.
+4. List at least one honest limitation. A record with no limitations looks fabricated, because every real run has some.
+5. Run `npm run verify` and `npm run build`.
+
+PRs that add a score without a measurement will be rejected. PRs that add a `not-run` model with sourced public figures are very welcome.
+
+## Live pages
+
 - [Huangguo AI video generator](https://huangguo.design/ai-video-generator)
 - [Huangguo image-to-video workflow](https://huangguo.design/image-to-video)
-- [Huangguo consistent-character workflow](https://huangguo.design/consistent-character-video)
-- [Huangguo AI storyboard workflow](https://huangguo.design/ai-storyboard-generator)
 - [Huangguo evidence library](https://huangguo.design/examples)
-- [Huangguo Drama urban-shot evidence page](https://huangguodrama.ai/tag/dushi/)
+- [Huangguo Chat role-play hub](https://huangguo.chat/play)
 
-Only fictional adult characters and authorized assets should be used. Do not use these recipes for minors, real-person sexualization, impersonation, or media you do not have permission to process.
+## Disclosure
+
+This database is maintained by the team behind the Huangguo product family, and the verified runs come from Huangguo production scripts. That is disclosed rather than hidden, because it is the obvious conflict of interest. It is also why every claim is hash-verifiable: our say-so is not the evidence, the file is.
+
+Vendor-published figures in `not-run` records were read on the `lastReviewedAt` date in each file and can change without notice. Check the `sourceUrl` before relying on any price.
+
+## Use restrictions
+
+Only fictional adult characters and assets you have permission to process. Do not use these recipes for minors, real-person sexualization, impersonation, or media you do not have the rights to.
+
+## License
+
+MIT. Data records in `examples/`, `models/`, and `failures/` are MIT as well; the linked media assets keep their own terms.
 
 ## 中文说明
 
-这里记录的是可核验的真实生成实验，不是宣传参数：公开输入、提示词、请求参数、输出文件、哈希、实测尺寸和失败边界都保留下来。运行 `npm run verify` 可重新下载并校验当前公开素材。
+这里只记录可核验的实测结果：请求参数、输出文件、字节数与 SHA-256、实测尺寸时长，以及请求与实际返回之间的偏差。已实测的 3 个模型与 6 个未实测模型严格分开，未实测的不给任何评分。失败案例同样保留，因为可复现的失败比成功宣传更有用。运行 `npm run verify` 可重新下载校验全部公开素材。

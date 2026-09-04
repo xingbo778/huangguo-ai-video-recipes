@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "wan-3.0",
+  "name": "Wan 3.0 (image-to-video)",
+  "provider": "Atlas Cloud",
+  "status": "verified",
+  "modality": ["image-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "Accessed through the Atlas Cloud aggregation API. Wan is also available as open weights, which this record does not cover.",
+    "documentationUrl": "https://docs.atlascloud.ai/"
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": null,
+    "resolutions": ["720p"],
+    "aspectRatios": [],
+    "nativeAudio": false
+  },
+  "evidence": {
+    "localRuns": [
+      { "recipeId": "dushi-neon-couple-wan3", "url": "https://huangguodrama.ai/evidence/hero-4-preview.mp4" }
+    ],
+    "publicRecords": []
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "The only verified local artifact is a lossy public web derivative (720x406, 15 fps, CRF 31). The provider's raw response was deleted after transcoding and is NOT preserved.",
+    "The site master (1920x1080) is recorded only by its SHA-256: 467a23963d980057622304a28368ad7a3fe5859c10c4954f671e061d4612fd90.",
+    "The 6-second duration and 720p request values were honored in this run, unlike the H3 runs."
+  ]
+}

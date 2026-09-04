@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema/failure.schema.json",
+  "id": "provider-raw-output-deleted",
+  "title": "Public artifact is a lossy web derivative, not the provider response",
+  "mode": "image-to-video",
+  "relatedModelIds": ["wan-3.0"],
+  "relatedRecipeIds": ["dushi-neon-couple-wan3"],
+  "firstObservedAt": "2026-09-04",
+  "status": "confirmed",
+  "symptom": "The provider response was transcoded to a 1920x1080 site master and then deleted. The only publicly available file is a 720x406, 15 fps, CRF 31 derivative without audio. Anyone measuring the public MP4 is measuring the derivative, not the model output.",
+  "reproduction": "Compare the recorded transcoded master SHA-256 against the public file's SHA-256. They differ by design.",
+  "measuredDifference": {
+    "requested": "720p, 6 s, 15 fps source",
+    "measured": "public file 720x406 at 15 fps; the 1920x1080 master exists only as a hash, never as a downloadable file"
+  },
+  "detection": "Check whether the URL you are about to cite is the provider's own response URL. If it points at your own CDN, you are citing a re-encode.",
+  "mitigation": "Either keep the provider response byte-for-byte, or label the derivative explicitly and publish the master's hash so the gap is auditable.",
+  "severity": "medium",
+  "whyItMatters": "Quality claims built on re-encoded derivatives are not reproducible. This is why the recipe records the master hash instead of quietly substituting the derivative.",
+  "notes": [
+    "Transcoded master SHA-256: 467a23963d980057622304a28368ad7a3fe5859c10c4954f671e061d4612fd90.",
+    "This entry is a documentation hazard rather than a model bug, but it silently invalidates any benchmark that scrapes public URLs."
+  ]
+}

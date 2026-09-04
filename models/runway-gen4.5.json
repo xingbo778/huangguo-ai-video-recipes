@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "runway-gen4.5",
+  "name": "Runway Gen-4.5 / Gen-4 Turbo",
+  "provider": "Runway",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video", "video-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "Runway developer account. Credits are billed at $0.01 each.",
+    "documentationUrl": "https://docs.dev.runwayml.com/"
+  },
+  "pricing": {
+    "unit": "developer credits, $0.01 each",
+    "publicRate": "gen4_turbo 5 credits/s = $0.05/s; gen4.5 12 credits/s = $0.12/s.",
+    "sourceUrl": "https://runwayml.com/pricing",
+    "note": "Read 2026-09-05 from third-party summary of Runway's pricing guide. Verify against Runway directly."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": 10,
+    "resolutions": ["720p", "1080p"],
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "nativeAudio": false
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://docs.dev.runwayml.com/",
+      "https://teachmeidea.com/sora-vs-veo-vs-runway/"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "No local run exists in this repository.",
+    "Gen-4 family returns silent video, so any dialogue workflow needs a separate audio stage."
+  ]
+}

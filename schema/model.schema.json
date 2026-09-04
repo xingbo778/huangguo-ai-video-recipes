@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://huangguo.design/schemas/video-model.json",
+  "title": "AI video model record",
+  "description": "A provider/model entry in the AI video model benchmark database. Entries with no local verified run carry status \"not-run\" and must not contain any quality, speed, or ranking score.",
+  "type": "object",
+  "required": ["id", "name", "provider", "status", "modality", "access", "lastReviewedAt"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "provider": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["verified", "not-run", "deprecated"] },
+    "modality": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["text-to-video", "image-to-video", "reference-to-video", "video-to-video", "first-frame", "last-frame"]
+      }
+    },
+    "access": {
+      "type": "object",
+      "required": ["type", "requiresApiKey", "regionNotes"],
+      "properties": {
+        "type": { "type": "string", "enum": ["public-api", "waitlist", "closed"] },
+        "requiresApiKey": { "type": "boolean" },
+        "regionNotes": { "type": "string", "description": "Known access constraints. Empty string only when genuinely unknown." },
+        "documentationUrl": { "type": "string", "format": "uri" }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "properties": {
+        "unit": { "type": "string" },
+        "publicRate": { "type": "string" },
+        "sourceUrl": { "type": "string", "format": "uri" },
+        "note": { "type": "string" }
+      }
+    },
+    "publishedSpec": {
+      "type": "object",
+      "description": "Vendor-published capabilities. Never mix these with measured values.",
+      "properties": {
+        "maxDurationSeconds": { "type": ["number", "null"] },
+        "resolutions": { "type": "array", "items": { "type": "string" } },
+        "aspectRatios": { "type": "array", "items": { "type": "string" } },
+        "nativeAudio": { "type": ["boolean", "null"] }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["localRuns", "publicRecords"],
+      "description": "How this record supports its claims.",
+      "properties": {
+        "localRuns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["recipeId"],
+            "properties": {
+              "recipeId": { "type": "string" },
+              "url": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "publicRecords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Citation strings or URLs to vendor docs or third-party reports read for this entry."
+        }
+      }
+    },
+    "lastReviewedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

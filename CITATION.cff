@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this database, please cite it."
+title: "Measured AI Video Model Database"
+abstract: "Reproducible AI video generation records with full request payloads, hash-verified public artifacts, measured output properties, and documented failure modes. Models with verified local runs are separated from models not yet run; no quality scores or rankings are reported."
+authors:
+  - name: "Huangguo"
+license: MIT
+repository-code: "https://github.com/huangguo-ai/video-recipes"
+keywords:
+  - video-generation
+  - image-to-video
+  - reproducibility
+  - benchmark
+  - evaluation

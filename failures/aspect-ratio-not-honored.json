@@ -1,0 +1,25 @@
+{
+  "$schema": "../schema/failure.schema.json",
+  "id": "aspect-ratio-silently-not-honored",
+  "title": "Requested 9:16 returned 3:4 with HTTP 200",
+  "mode": "image-to-video",
+  "relatedModelIds": ["minimax-h3-max"],
+  "relatedRecipeIds": ["guoguo-idle-loop-h3v3", "guoguo-hair-reaction-h3v1"],
+  "firstObservedAt": "2026-09-04",
+  "status": "confirmed",
+  "symptom": "Both requests set ratio to 9:16 and both returned a 200 response with a playable MP4. The measured output was 480x640, which is 3:4, not 9:16. Nothing in the HTTP response indicated the request had not been honored.",
+  "reproduction": "Submit an image-to-video request with ratio 9:16, resolution 480P, durationSeconds 5, promptExpansion false. Download the completed file and run ffprobe instead of trusting the request echo.",
+  "measuredDifference": {
+    "requested": "9:16 (would be 360x640 at 480P)",
+    "measured": "480x640 = 3:4",
+    "delta": "160 pixels of extra width; the frame is wider than requested rather than taller"
+  },
+  "detection": "Parse width and height from the downloaded file with ffprobe. Do not read dimensions from any API response field, and do not infer the ratio from the request you sent.",
+  "mitigation": "Probe the output, then crop or pad to the delivery ratio in post. Do not re-submit hoping for a different result; both runs behaved identically.",
+  "severity": "high",
+  "whyItMatters": "A vertical-first pipeline that trusts the request parameter will ship a 3:4 video into a 9:16 slot. Every downstream crop, thumbnail, and player layout then breaks.",
+  "notes": [
+    "Reproduced twice on the same model with the same parameters, so this is not a transient failure.",
+    "The Wan 3.0 run in this same database DID honor its requested duration and resolution, so this cannot be generalized to all providers."
+  ]
+}

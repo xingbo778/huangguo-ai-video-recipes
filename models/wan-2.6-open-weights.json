@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "wan-open-weights",
+  "name": "Wan (open-weight releases)",
+  "provider": "Alibaba",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": false,
+    "regionNotes": "Open weights, self-hosted. No vendor API key and no vendor moderation layer, so the operator is responsible for access control, logging, and output review.",
+    "documentationUrl": "https://github.com/Wan-Video/Wan2.2"
+  },
+  "pricing": {
+    "unit": "self-hosted GPU time",
+    "publicRate": "No per-second vendor price. Cost is your own GPU hours. Commercial API resellers list roughly $0.07/s for Wan 2.6 at 2K.",
+    "sourceUrl": "",
+    "note": "Read 2026-09-05. Reseller figures are for hosted Wan, not self-hosting."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": 10,
+    "resolutions": ["480p", "720p", "1080p", "2K"],
+    "aspectRatios": [],
+    "nativeAudio": false
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://github.com/Wan-Video/Wan2.2"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "Distinct from the wan-3.0 record, which is a verified hosted Atlas Cloud run. This record covers the open-weight, self-hosted path, which has NOT been run here.",
+    "The verified Wan 3.0 run in this database was the only request that honored both its requested duration and resolution. That is a single observation, not evidence about the open-weight line."
+  ]
+}

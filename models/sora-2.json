@@ -1,0 +1,39 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "sora-2",
+  "name": "Sora 2 / Sora 2 Pro",
+  "provider": "OpenAI",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video", "video-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "OpenAI platform key. Not available in all regions; OpenAI's own supported-countries list applies and changes.",
+    "documentationUrl": "https://platform.openai.com/docs/guides/video-generation"
+  },
+  "pricing": {
+    "unit": "per generated second",
+    "publicRate": "sora-2 720p $0.10/s; sora-2-pro 720p $0.30/s, 1024p $0.50/s, 1080p $0.70/s. Batch is half of standard.",
+    "sourceUrl": "https://openai.com/api/pricing/",
+    "note": "Read 2026-09-05 from OpenAI's public pricing page and third-party summaries. Verify before budgeting."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": 20,
+    "resolutions": ["720p", "1024p", "1080p"],
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "nativeAudio": true
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://platform.openai.com/docs/guides/video-generation",
+      "https://www.cometapi.com/ai-video-api-pricing/ - third-party per-second comparison read 2026-09-05"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "DEPRECATION: OpenAI's schedule removes the /v1/videos endpoint, sora-2 and sora-2-pro on 2026-09-24. Read 2026-09-05 from third-party reporting of OpenAI's deprecation table; confirm against OpenAI's own deprecations page before relying on this date.",
+    "No local run exists in this repository. Every number here is someone else's published figure, not a measurement.",
+    "This is the single largest near-term migration keyword in the category, because the shutdown date is fixed and public."
+  ]
+}

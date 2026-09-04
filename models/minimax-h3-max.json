@@ -1,0 +1,33 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "minimax-h3-max",
+  "name": "Minimax H3 Max (image-to-video)",
+  "provider": "Atlas Cloud",
+  "status": "verified",
+  "modality": ["image-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "Accessed through the Atlas Cloud aggregation API, not directly from the model vendor.",
+    "documentationUrl": "https://docs.atlascloud.ai/"
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": null,
+    "resolutions": ["480P"],
+    "aspectRatios": ["9:16"],
+    "nativeAudio": null
+  },
+  "evidence": {
+    "localRuns": [
+      { "recipeId": "guoguo-idle-loop-h3v3", "url": "https://huangguo.chat/motion/guoguo-idle-h3v3.mp4" },
+      { "recipeId": "guoguo-hair-reaction-h3v1", "url": "https://huangguo.chat/motion/guoguo-zone-hair-h3v1.mp4" }
+    ],
+    "publicRecords": []
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "Both local runs requested 9:16 and both returned 480x640, which is 3:4. This is a measured request-versus-output mismatch, not an inference.",
+    "Requested duration was 5 seconds; measured outputs were 10.33 s (after palindrome post-processing) and 5.17 s.",
+    "promptExpansion was set to false in both runs. Behaviour with prompt expansion enabled has not been tested here."
+  ]
+}

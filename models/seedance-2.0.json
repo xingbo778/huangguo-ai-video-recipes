@@ -1,0 +1,40 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "seedance-2.0",
+  "name": "Seedance 2.0 / 2.0 Fast / 2.0 Mini",
+  "provider": "ByteDance",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video", "reference-to-video", "first-frame", "last-frame", "video-to-video"],
+  "access": {
+    "type": "waitlist",
+    "requiresApiKey": true,
+    "regionNotes": "Consumer access via Jimeng/Dreamina in China and Dreamina internationally. API access is via Volcengine Ark and third-party resellers, and reporting on whether the first-party API is generally open is conflicting. Resellers advertise direct China access without a Volcengine enterprise account.",
+    "documentationUrl": "https://www.volcengine.com/docs/"
+  },
+  "pricing": {
+    "unit": "per generated second or per million tokens, depending on channel",
+    "publicRate": "Reseller per-second: Seedance 2.0 480p $0.092/s, 720p $0.197/s, 1080p $0.492/s; Fast 480p $0.071/s, 720p $0.153/s; Mini 480p $0.044/s, 720p $0.095/s. Volcengine token pricing: 720p Y28/M tokens, 1080p Y46/M tokens.",
+    "sourceUrl": "https://www.volcengine.com/pricing",
+    "note": "Read 2026-09-05. Sources materially disagree: one reports the Volcengine API as announced-but-delayed with only a pricing page live, while multiple resellers sell working access today. Treat availability as unresolved until tested."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": 15,
+    "resolutions": ["480p", "720p", "1080p", "2K"],
+    "aspectRatios": ["16:9", "9:16", "4:3", "3:4", "21:9", "1:1"],
+    "nativeAudio": true
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://www.atlascloud.ai/zh/blog/case-studies/seedance-2.0-pricing-full-cost-breakdown-2026",
+      "https://help.apiyi.com/seedance-2-api-pricing-video-generation-guide.html",
+      "https://apimodels.app/zh/models/seedance-2.0"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "No local run exists in this repository.",
+    "This is the highest-priority model to test next: it is the main China-reachable alternative for the Sora/Veo migration wave, and published specs claim up to 9 reference images which would directly address the identity-drift limitation measured in the Grok and H3 runs.",
+    "Reported to embed C2PA provenance watermarks in every output, which matters for anyone republishing generated video."
+  ]
+}

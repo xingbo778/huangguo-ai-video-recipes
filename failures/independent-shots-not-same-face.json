@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema/failure.schema.json",
+  "id": "independent-shots-cannot-verify-same-face",
+  "title": "Two independently generated shots of the same character do not verify as one face",
+  "mode": "text-to-video",
+  "relatedModelIds": ["grok-imagine-video-1.5"],
+  "relatedRecipeIds": [],
+  "firstObservedAt": "2026-09-04",
+  "status": "confirmed",
+  "symptom": "Two separate 4.04 s clips generated from text prompts describing the same character both produced a black-haired figure in a black dress inside a hotel environment, but shot one is a rear view in a corridor and shot two is a front/side view at a rain window. The face is not visible in both, so the two shots cannot be verified as the same person.",
+  "reproduction": "Generate two shots from separate text-to-video requests describing one character, concatenate them, then try to verify identity across the cut.",
+  "measuredDifference": {
+    "requested": "one continuous character across two shots",
+    "measured": "shared costume and setting, unverifiable identity, visible hard cut at the splice"
+  },
+  "detection": "Watch the cut. If the face is not on screen in both adjacent shots, no continuity claim is supportable regardless of how consistent the prompt was.",
+  "mitigation": "Either keep the face on screen in every shot you intend to splice, or use a locked identity mechanism. Do not describe the same character and assume the model resolves identity.",
+  "severity": "medium",
+  "whyItMatters": "Multi-shot scenes are the main reason people stitch AI clips. Prompt reuse across shots does not produce a continuous character.",
+  "notes": [
+    "Evidence lives in huangguo.design's public evidence directory: grok-storyboard-shot-1.mp4, grok-storyboard-shot-2.mp4, and the concatenated grok-storyboard-two-shot.mp4 (SHA-256 4a3171e70204983e72388133a74e9e9e55c59367f965fdead786da502ae77f58).",
+    "Not yet formatted as standalone recipes in this repository; tracked as a gap."
+  ]
+}

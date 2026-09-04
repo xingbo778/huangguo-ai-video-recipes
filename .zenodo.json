@@ -1,0 +1,25 @@
+{
+  "title": "Measured AI Video Model Database: reproducible runs, hash-verified outputs, and failure modes",
+  "description": "A public record of AI video generation runs with full request payloads, hash-verified public artifacts, measured output properties, and documented failure modes. Distinguishes models with verified local runs from models not yet run, and reports no quality scores or rankings.",
+  "license": "mit",
+  "upload_type": "dataset",
+  "creators": [
+    { "name": "Huangguo" }
+  ],
+  "keywords": [
+    "video generation",
+    "image-to-video",
+    "text-to-video",
+    "benchmark",
+    "reproducibility",
+    "evaluation"
+  ],
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/huangguo-ai/video-recipes",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

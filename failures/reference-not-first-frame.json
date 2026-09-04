@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema/failure.schema.json",
+  "id": "reference-image-not-used-as-first-frame",
+  "title": "Reference-to-video does not lock the reference as frame one",
+  "mode": "reference-to-video",
+  "relatedModelIds": ["grok-imagine-video-1.5"],
+  "relatedRecipeIds": ["guoguo-reference-grok-1.5"],
+  "firstObservedAt": "2026-09-04",
+  "status": "confirmed",
+  "symptom": "The reference image was supplied as the sole identity reference. The returned clip's opening frame differs from that reference in pose, framing, and room. The gold dress, bow, and hairstyle remain recognizable, but facial proportions visibly change across the clip.",
+  "reproduction": "Submit a reference-to-video request with one reference image and a prompt that asks to preserve face, hairstyle, clothing, and proportions. Compare the output's first frame against the reference image.",
+  "measuredDifference": {
+    "requested": "reference image used as the only identity anchor, pose and framing preserved",
+    "measured": "different pose, different framing, different room; facial proportions drift within the 4.04 s clip"
+  },
+  "detection": "Extract the output's first frame and compare it to the reference side by side. A prompt that says 'preserve' is not a guarantee and is not a test.",
+  "mitigation": "If you need a locked first frame, use a true image-to-video or first-frame mode instead of reference-to-video. Treat reference-to-video as a soft identity hint.",
+  "severity": "high",
+  "whyItMatters": "Reference-to-video is routinely marketed as consistent-character generation. It is not identity verification. Workflows that cut between shots generated this way will show visible face changes.",
+  "notes": [
+    "This is a mode-selection error, not a model defect. The same model's image-to-video path was not tested here.",
+    "The limitation is recorded in the recipe itself, not just here, so the claim and the counter-evidence stay together."
+  ]
+}

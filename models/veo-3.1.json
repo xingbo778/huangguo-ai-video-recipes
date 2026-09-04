@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "veo-3.1",
+  "name": "Veo 3.1 (Lite / Fast / standard)",
+  "provider": "Google DeepMind",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video", "video-to-video"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "Via Gemini API or Vertex AI. Regional availability and quota tiers vary; Veo 3.1 Lite is Preview.",
+    "documentationUrl": "https://ai.google.dev/gemini-api/docs/video"
+  },
+  "pricing": {
+    "unit": "per generated second",
+    "publicRate": "Veo 3.1 Lite 720p video-only $0.03/s; Veo 3.1 Fast 720p $0.08/s; Veo 3.1 720p/1080p $0.20/s; 4K and audio use separate tiers up to $0.60/s.",
+    "sourceUrl": "https://ai.google.dev/pricing",
+    "note": "Read 2026-09-05 from Google's pricing page via third-party summary. Audio SKUs are listed but Agent Platform docs mark sound unsupported on some endpoints. Verify the exact route before budgeting."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": 8,
+    "resolutions": ["720p", "1080p", "4K"],
+    "aspectRatios": ["16:9", "9:16"],
+    "nativeAudio": true
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://ai.google.dev/pricing",
+      "https://www.cometapi.com/ai-video-api-pricing/ - comparison table read 2026-09-05"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "No local run exists in this repository. All figures are published rates, not measurements.",
+    "An 8-second per-request cap means multi-shot work requires an extension or concat step, which this repository has not tested against Veo."
+  ]
+}

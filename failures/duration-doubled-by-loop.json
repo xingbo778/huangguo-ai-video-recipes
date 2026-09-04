@@ -1,0 +1,23 @@
+{
+  "$schema": "../schema/failure.schema.json",
+  "id": "palindrome-loop-doubles-duration",
+  "title": "Reverse-concat loop doubles duration and breaks asymmetric gestures",
+  "mode": "post-processing",
+  "relatedModelIds": ["minimax-h3-max"],
+  "relatedRecipeIds": ["guoguo-idle-loop-h3v3"],
+  "firstObservedAt": "2026-09-04",
+  "status": "confirmed",
+  "symptom": "A 5-second model output was concatenated with a reversed copy to create a palindrome loop, producing 10.33 s. The loop works for symmetric idle motion but makes any asymmetric gesture read as an unnatural rewind.",
+  "reproduction": "Take a clip whose opening and closing poses differ, concatenate it with its reverse, and watch the join.",
+  "measuredDifference": {
+    "requested": "5 s, final pose matching the opening pose",
+    "measured": "10.333333 s after palindrome concatenation; the prompt asked for a matching end pose but the result still required manual loop review"
+  },
+  "detection": "Compare the last frame of the forward clip against the first frame. If they differ meaningfully, do not palindrome it.",
+  "mitigation": "Use palindrome looping only for genuinely symmetric motion like breathing or idle sway. For directional gestures, generate a longer single take or trim to a shorter loop.",
+  "severity": "low",
+  "whyItMatters": "It is the cheapest way to lengthen a short clip and therefore the most commonly overused. It fails exactly where people most want it to work, on gestures.",
+  "notes": [
+    "The recipe explicitly notes the final frame is close to but not guaranteed to equal the opening pose."
+  ]
+}

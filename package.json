@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "verify:db": "node scripts/verify-database.mjs",
+    "build": "node scripts/build-matrix.mjs",
+    "check": "npm run build && npm run verify:db"
   }
 }

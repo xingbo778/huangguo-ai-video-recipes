@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://huangguo.design/schemas/video-failure.json",
+  "title": "AI video failure record",
+  "description": "A reproducible failure mode or limitation observed in this project's own runs. Records must distinguish what was requested from what was measured.",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "mode",
+    "relatedModelIds",
+    "relatedRecipeIds",
+    "firstObservedAt",
+    "status",
+    "symptom",
+    "reproduction",
+    "measuredDifference",
+    "detection",
+    "mitigation",
+    "severity",
+    "whyItMatters"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "mode": {
+      "type": "string",
+      "enum": ["text-to-video", "image-to-video", "reference-to-video", "video-to-video", "post-processing", "access"]
+    },
+    "relatedModelIds": { "type": "array", "items": { "type": "string" } },
+    "relatedRecipeIds": { "type": "array", "items": { "type": "string" } },
+    "firstObservedAt": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "status": { "type": "string", "enum": ["confirmed", "suspected", "resolved"] },
+    "symptom": { "type": "string", "minLength": 1 },
+    "reproduction": { "type": "string", "minLength": 1 },
+    "measuredDifference": {
+      "type": "object",
+      "required": ["requested", "measured"],
+      "properties": {
+        "requested": { "type": "string" },
+        "measured": { "type": "string" },
+        "delta": { "type": "string" }
+      }
+    },
+    "detection": { "type": "string", "minLength": 1 },
+    "mitigation": { "type": "string", "minLength": 1 },
+    "severity": { "type": "string", "enum": ["low", "medium", "high"] },
+    "whyItMatters": { "type": "string", "minLength": 1 },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "../schema/model.schema.json",
+  "id": "kling-3.0",
+  "name": "Kling 3.0 / 3.0 Turbo / 2.5 Turbo",
+  "provider": "Kuaishou",
+  "status": "not-run",
+  "modality": ["text-to-video", "image-to-video", "first-frame", "last-frame"],
+  "access": {
+    "type": "public-api",
+    "requiresApiKey": true,
+    "regionNotes": "First-party API plus many third-party aggregators. Aggregator rates differ substantially from first-party; Kuaishou is a China-based provider so cross-border access terms vary by reseller.",
+    "documentationUrl": "https://kling.ai/dev/pricing"
+  },
+  "pricing": {
+    "unit": "per generated second or per clip, depending on reseller",
+    "publicRate": "Kling 3.0 720p $0.084-$0.126/s; 3.0 Turbo 720p $0.11/s; 1080p $0.14-$0.168/s. Resellers quote per-clip instead, e.g. $0.35 per 5s 1080p.",
+    "sourceUrl": "https://kling.ai/dev/pricing",
+    "note": "Read 2026-09-05 from vendor and reseller pages. Aggregator quotes for the same nominal model ranged from $0.0735/s to $0.35/clip. Do not treat any single figure as the price."
+  },
+  "publishedSpec": {
+    "maxDurationSeconds": 15,
+    "resolutions": ["720p", "1080p", "4K"],
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "nativeAudio": true
+  },
+  "evidence": {
+    "localRuns": [],
+    "publicRecords": [
+      "https://kling.ai/dev/pricing",
+      "https://www.krea.ai/docs/api-reference/video/kling-25",
+      "https://blogs.novita.ai/kling-v2-5-turbo-api-novita-ai/"
+    ]
+  },
+  "lastReviewedAt": "2026-09-05",
+  "notes": [
+    "No local run exists in this repository.",
+    "Pricing is the least consistent field across this whole database. Kling is resold widely and each reseller re-lists its own number."
+  ]
+}
