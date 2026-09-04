@@ -1,0 +1,50 @@
+{
+  "$schema": "../schema/recipe.schema.json",
+  "id": "guoguo-hair-reaction-h3v1",
+  "title": "Fictional adult character hair-touch reaction",
+  "provenance": {
+    "sourceScript": "huangguo.chat/scripts/generate-zone-clips.mjs",
+    "recordedAt": "2026-09-04",
+    "claim": "The request payload is reproduced from the generation script and the public artifacts are verified by SHA-256."
+  },
+  "request": {
+    "provider": "Atlas Cloud",
+    "model": "minimax/h3-max/image-to-video",
+    "prompt": "Locked-off vertical cinematic portrait of the exact same adult character, 果果. She slowly raises one hand and pushes a strand of hair back behind the ear, fingertips grazing the jaw for a moment, while holding a soft inviting look at the viewer. Slow, deliberate, seductive motion: realistic anatomy, stable hands, no cuts, no camera movement, no morphing, no text. Preserve facial identity, adult age, hairstyle, clothing, body proportions, background, framing and lighting exactly. No speech and no lip movement. The final pose should closely match the opening pose for a clean loop.",
+    "parameters": {
+      "resolution": "480P",
+      "durationSeconds": 5,
+      "ratio": "9:16",
+      "promptExpansion": false
+    }
+  },
+  "input": {
+    "url": "https://huangguo.chat/characters-v2/guoguo.jpg",
+    "mediaType": "image/jpeg",
+    "bytes": 115242,
+    "sha256": "f13130a7b5ec6b2837611c47cd3608c0a823bd263819ca37e48842c469318299",
+    "measured": {
+      "width": 864,
+      "height": 1152
+    }
+  },
+  "output": {
+    "url": "https://huangguo.chat/motion/guoguo-zone-hair-h3v1.mp4",
+    "mediaType": "video/mp4",
+    "bytes": 285336,
+    "sha256": "acdb566b06e313b6b916904ef2729200d062f651ae7bd969c88973761a9abb37",
+    "measured": {
+      "codec": "h264",
+      "width": 480,
+      "height": 640,
+      "durationSeconds": 5.166667,
+      "framesPerSecond": 24
+    }
+  },
+  "postProcessing": [],
+  "limitations": [
+    "The requested 9:16 ratio was not honored; the measured output is 3:4.",
+    "A hand crossing the face is an occlusion stress test and can introduce finger, hair, jawline, or identity artifacts.",
+    "The final frame is close to, but not guaranteed to equal, the opening pose; manual loop review remains necessary."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "../schema/recipe.schema.json",
+  "id": "guoguo-idle-loop-h3v3",
+  "title": "Fictional adult character idle loop",
+  "provenance": {
+    "sourceScript": "huangguo.chat/scripts/generate-motion.mjs",
+    "recordedAt": "2026-09-04",
+    "claim": "The request payload is reproduced from the generation script and the public artifacts are verified by SHA-256."
+  },
+  "request": {
+    "provider": "Atlas Cloud",
+    "model": "minimax/h3-max/image-to-video",
+    "prompt": "Locked-off vertical cinematic portrait of the exact same adult character, 果果, in an elegant private lounge with warm amber practical lights and faint teal rim light. Preserve facial identity, age, hairstyle, clothing, body proportions, background, framing and lighting exactly. Seductive, slow, deliberate motion: realistic anatomy, stable hands, no cuts, no camera movement, no morphing, no text. No speech and no lip movement. The final pose should closely match the opening pose for a clean loop. The character keeps unbroken eye contact with the lens, breathing slowly. They blink once, very slowly, let a warm knowing smile grow across their face, tilt their head a fraction toward the lens, and in the final seconds lean almost imperceptibly closer, as if stepping into your space, then settle back to the starting pose.",
+    "parameters": {
+      "resolution": "480P",
+      "durationSeconds": 5,
+      "ratio": "9:16",
+      "promptExpansion": false
+    }
+  },
+  "input": {
+    "url": "https://huangguo.chat/characters-v2/guoguo.jpg",
+    "mediaType": "image/jpeg",
+    "bytes": 115242,
+    "sha256": "f13130a7b5ec6b2837611c47cd3608c0a823bd263819ca37e48842c469318299",
+    "measured": {
+      "width": 864,
+      "height": 1152
+    }
+  },
+  "output": {
+    "url": "https://huangguo.chat/motion/guoguo-idle-h3v3.mp4",
+    "mediaType": "video/mp4",
+    "bytes": 484910,
+    "sha256": "3f3dd70af5b044868358e2b6dedb45f72ed9e5368a1df733011de8fa8ef3b010",
+    "measured": {
+      "codec": "h264",
+      "width": 480,
+      "height": 640,
+      "durationSeconds": 10.333333,
+      "framesPerSecond": 24
+    }
+  },
+  "postProcessing": [
+    "The five-second model output is concatenated with a reversed copy to make a palindrome loop.",
+    "The web derivative is encoded as H.264, CRF 25, yuv420p, with fast-start metadata."
+  ],
+  "limitations": [
+    "The requested 9:16 ratio was not honored; the measured output is 3:4.",
+    "Reverse concatenation doubles the duration and can make asymmetric gestures look unnatural.",
+    "A reference image and prompt constraints reduce identity drift but do not guarantee identity, anatomy, or hand stability."
+  ]
+}

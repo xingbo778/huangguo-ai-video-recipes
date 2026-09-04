@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://huangguo.design/schemas/video-recipe.json",
+  "title": "Reproducible AI video recipe",
+  "type": "object",
+  "required": ["id", "title", "provenance", "request", "input", "output", "postProcessing", "limitations"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "provenance": {
+      "type": "object",
+      "required": ["sourceScript", "recordedAt", "claim"]
+    },
+    "request": {
+      "type": "object",
+      "required": ["provider", "model", "prompt", "parameters"]
+    },
+    "input": { "$ref": "#/$defs/artifact" },
+    "output": { "$ref": "#/$defs/artifact" },
+    "postProcessing": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["url", "mediaType", "bytes", "sha256", "measured"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "mediaType": { "type": "string" },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "measured": { "type": "object" }
+      }
+    }
+  }
+}
