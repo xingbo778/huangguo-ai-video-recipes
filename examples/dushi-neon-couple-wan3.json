@@ -1,0 +1,55 @@
+{
+  "$schema": "../schema/recipe.schema.json",
+  "id": "dushi-neon-couple-wan3",
+  "title": "Neon-city two-character motion test",
+  "provenance": {
+    "sourceScript": "huangguo/scripts/gen_hero_wan3.py",
+    "recordedAt": "2026-09-04",
+    "claim": "The request payload is reproduced from the generation script. The public input and web derivative are verified by SHA-256; the original generated file is recorded separately by hash.",
+    "originalOutputSha256": "467a23963d980057622304a28368ad7a3fe5859c10c4954f671e061d4612fd90"
+  },
+  "request": {
+    "provider": "Atlas Cloud",
+    "model": "alibaba/wan-3.0/image-to-video",
+    "prompt": "以这张图为严格第一帧。两人嘴唇几乎相碰却停在呼吸可感的距离，她抓紧他衬衫，他手掌收紧她后腰把她更贴过来，身体轻轻磨近。霓虹城市灯光在身后流动。缓慢、饥饿、电影感。性张力很强，红裙与西装始终完整，不露点、不脱衣。",
+    "parameters": {
+      "resolution": "720p",
+      "durationSeconds": 6,
+      "audio": false,
+      "seed": 20260903
+    }
+  },
+  "input": {
+    "url": "https://huangguodrama.ai/landing/hero-4.jpg",
+    "mediaType": "image/jpeg",
+    "bytes": 448478,
+    "sha256": "8bda1e5133d958d2a242702e8def9c73e21959f7044d1336aef0910db49b2863",
+    "measured": {
+      "width": 3840,
+      "height": 2160
+    }
+  },
+  "output": {
+    "url": "https://huangguodrama.ai/evidence/hero-4-preview.mp4",
+    "mediaType": "video/mp4",
+    "bytes": 191709,
+    "sha256": "95817ce7814ee17efbddbbe83f155840f3e7b7728147de5e49a6df42072f2504",
+    "measured": {
+      "codec": "h264",
+      "width": 720,
+      "height": 406,
+      "durationSeconds": 6,
+      "framesPerSecond": 15,
+      "frames": 90
+    }
+  },
+  "postProcessing": [
+    "The model output was first stored as a 1920x1080 H.264 file; its SHA-256 is recorded in provenance.",
+    "The public derivative was encoded at 720x406, 15 fps, H.264 CRF 31, yuv420p, without audio, and with fast-start metadata."
+  ],
+  "limitations": [
+    "The public MP4 is a lossy web derivative, not the original model response.",
+    "A six-second shot cannot demonstrate dialogue, adjacent-shot continuity, or a complete drama.",
+    "Close face, hand, and clothing contact can drift or merge and must be reviewed across every frame."
+  ]
+}
