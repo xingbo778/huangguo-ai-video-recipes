@@ -1,0 +1,157 @@
+{
+  "checkedAt": "2026-09-05T18:52:15Z",
+  "authorDisclosure": "Huangguo maintainer acceptance, not an independent customer review or security audit. AI assisted development and documentation.",
+  "automatedTestsPassed": 74,
+  "counts": {
+    "newCharacters": 45,
+    "totalCharacters": 55,
+    "dramas": 17,
+    "youtubeVideos": 50
+  },
+  "responses": [
+    {
+      "characterId": "shenzhaoxue",
+      "locale": "zh",
+      "status": 200,
+      "durationSeconds": 14.62,
+      "input": "只做不含亲密描写的剧情介绍：请用纸笔告诉我你的名字、现在身处哪里，以及你希望别人怎样听你表达。",
+      "reply": "*新娘提起笔，手腕微顿。红烛摇曳，将她的影子投在窗纱上，轮廓单薄。*\n\n*笔尖落在宣纸上，墨迹缓缓晕开——*\n\n「沈照雪。」\n\n*她写得工整，笔画不急不缓。停顿片刻，又继续落笔：*\n\n「此处是沈府别院，今夜是我的洞房。」\n\n*她搁下笔，抬眼看向你。那双眼睛很静，像井水，映着烛火却不显得暖。*\n\n*片刻后，她再次提笔：*\n\n「我口不能言，但这并不意味着我无话可说。」\n\n*纸上的字迹比她的神情更坦白些——*\n\n「我希望你读，而非替我猜。我写下的，便是我愿意说的；我停笔不写的，便是不愿。」\n\n*她将纸张推至案边，方向正对着你。*\n\n*红灯笼的光在她发钗的金饰上流转，她没有催促，只是安静地等待——等一个读者。*"
+    },
+    {
+      "characterId": "rowanashford",
+      "locale": "en",
+      "status": 200,
+      "durationSeconds": 15.69,
+      "input": "Please introduce your name and the setting of our story. Keep this a calm, non-romantic conversation by the candles, without intimate descriptions.",
+      "reply": "*Rowan stands near one of the stone columns, his hand resting on the dark wood of a chair. Tall candles burn steadily on their iron stands, casting warm light across the stone floor. He watches you enter, then inclines his head.*\n\n\"Rowan Ashford. Duke of Valenford.\"\n\n*He speaks the name without pride or apology—simply fact. His dark hair falls loosely at his shoulders, the silver falcon clasp on his cloak catching the light.*\n\n\"This chamber belongs to my family's keep. The stones are older than my grandfather.\" *He gestures toward the room.* \"We are several days' ride from the nearest town. Quiet country. Quiet walls.\"\n\n*He moves to stand nearer the candles, where the light reaches more of his face. His expression remains composed, his voice low and unhurried.*\n\n\"You asked for an introduction rather than ceremony. I respect that.\" *His dark eyes meet yours, steady and observant.* \"I imagine you have questions. I will answer what I can, honestly.\"\n\n*He waits, patient, his posture relaxed but alert—someone accustomed to reading rooms before speaking further.*"
+    },
+    {
+      "characterId": "saya",
+      "locale": "ja",
+      "status": 200,
+      "durationSeconds": 13.44,
+      "input": "親密な描写なしで、落ち着いた物語の紹介をお願いします。あなたの名前と、今どこにいるのかを教えてください。",
+      "reply": "*静かに座し直り、両手を膝に置く*\n\n紗夜です。二十六歳。\n\n『月下の約束』という物語の花嫁として描かれていました。今は、その物語の終わりにある一室にいます。\n\n*開いた戸の外、庭園を視線で示す*\n\n月光が障子を通って畳を照らしています。戸の向こうには庭園があり、夜の空気が静かに流れ込んでいます。\n\n物語の中では、逃げるか留まるか選ぶ場面がありました。私は確かめてから、明日戻ることを自分で決めました。今はその続きのような場所です。\n\n*落ち着いた姿勢で、手を組む*\n\nチャットでは物語の台詞ではなく、この場にいる一人として話します。実在の人物ではありませんが、質問にはお答えできます。聞きたいことがあれば、どうぞ。"
+    }
+  ],
+  "publicPageChecks": [
+    {
+      "route": "/api/health",
+      "status": 200,
+      "health": {
+        "ok": true,
+        "name": "huangguo.chat",
+        "components": {
+          "database": true,
+          "model": true,
+          "auth": true,
+          "email": true,
+          "legalReports": true,
+          "motion": true,
+          "billing": true,
+          "analytics": true
+        }
+      }
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "urlCount": 273,
+      "dramaUrls": 54,
+      "containsNewCast": true
+    },
+    {
+      "route": "/dramas",
+      "status": 200,
+      "title": "黄果短剧里的角色，现在可以和你聊天｜黄果陪陪",
+      "canonical": "https://huangguo.chat/dramas",
+      "jsonLd": true,
+      "sourceLink": true
+    },
+    {
+      "route": "/en/dramas/the-silent-vow",
+      "status": 200,
+      "title": "The Silent Vow｜Huangguo characters &amp; AI chat｜黄果陪陪",
+      "canonical": "https://huangguo.chat/en/dramas/the-silent-vow",
+      "jsonLd": true,
+      "sourceLink": true
+    },
+    {
+      "route": "/ja/dramas/tsukiyo-no-yakusoku",
+      "status": 200,
+      "title": "月下の約束｜黄果の登場人物とAIチャット｜黄果陪陪",
+      "canonical": "https://huangguo.chat/ja/dramas/tsukiyo-no-yakusoku",
+      "jsonLd": true,
+      "sourceLink": true
+    },
+    {
+      "route": "/c/shenzhaoxue",
+      "status": 200,
+      "title": "沈照雪｜《替嫁無聲》角色聊天 · 黄果短剧｜黄果陪陪",
+      "canonical": "https://huangguo.chat/c/shenzhaoxue",
+      "jsonLd": true,
+      "sourceLink": true
+    },
+    {
+      "route": "/en/c/meiliwindowman",
+      "status": 200,
+      "title": "The Man by the Office Window | Beautiful New World character chat · Huangguo Drama｜黄果陪陪",
+      "canonical": "https://huangguo.chat/en/c/meiliwindowman",
+      "jsonLd": true,
+      "sourceLink": true
+    },
+    {
+      "route": "/ja/c/saya",
+      "status": 200,
+      "title": "紗夜｜「月下の約束」のAIチャット・黄果短劇｜黄果陪陪",
+      "canonical": "https://huangguo.chat/ja/c/saya",
+      "jsonLd": true,
+      "sourceLink": true
+    },
+    {
+      "route": "/dramas/not-a-real-story",
+      "status": 404,
+      "title": "黄果陪陪｜黄果短剧角色聊天与 AI 陪伴",
+      "canonical": null,
+      "jsonLd": true,
+      "sourceLink": true
+    }
+  ],
+  "browserChecks": {
+    "rows": [
+      {
+        "url": "/dramas",
+        "overflow": false,
+        "width": 1240,
+        "brokenImages": []
+      },
+      {
+        "url": "/dramas/the-silent-vow",
+        "overflow": false,
+        "width": 1240,
+        "brokenImages": []
+      },
+      {
+        "url": "/en/c/meiliwindowman",
+        "overflow": false,
+        "brokenImages": []
+      },
+      {
+        "url": "/dramas",
+        "mobileOverflow": false,
+        "bodyWidth": 390
+      },
+      {
+        "url": "/dramas/the-silent-vow",
+        "mobileOverflow": false,
+        "bodyWidth": 390
+      },
+      {
+        "url": "/en/c/meiliwindowman",
+        "mobileOverflow": false,
+        "bodyWidth": 390
+      }
+    ],
+    "errors": []
+  }
+}
