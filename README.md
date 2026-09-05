@@ -82,6 +82,10 @@ The useful contribution is a run we don't have.
 
 PRs that add a score without a measurement will be rejected. PRs that add a `not-run` model with sourced public figures are very welcome.
 
+## Character chat acceptance
+
+- [Story-to-character chat acceptance — 45 added characters, source mapping, and actual response samples (中文)](docs/CHAT_CHARACTER_ACCEPTANCE_2026-09-06.md)
+
 ## Live pages
 
 - [Huangguo AI video generator](https://huangguo.design/ai-video-generator)
